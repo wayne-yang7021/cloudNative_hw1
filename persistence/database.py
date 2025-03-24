@@ -37,6 +37,12 @@ def init_db():
         name TEXT UNIQUE NOT NULL
     )
     """)
+
+    cursor.execute("SELECT COUNT(*) FROM listings")
+    if cursor.fetchone()[0] == 0:
+        cursor.execute("DELETE FROM sqlite_sequence WHERE name='listings'")
+        cursor.execute("INSERT INTO sqlite_sequence (name, seq) VALUES ('listings', 100000)")
+
     
     conn.commit()
     conn.close()
