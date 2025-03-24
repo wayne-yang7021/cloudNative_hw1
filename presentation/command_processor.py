@@ -12,12 +12,12 @@ class CommandProcessor:
             "GET_TOP_CATEGORY": self.get_top_category,
             "DELETE_LISTING": self.delete_listing,
             "GET_TOP_CATEGORY": self.get_top_category,
-            "GET_CATEGORY": self.get_categories,
-            "GET_LISTINGS": self.get_all_listings,
+            "GET_CATEGORY": self.get_category_listings,
+            "GET_LISTING": self.get_listing,
         }
 
     def parse_command(command_line: str) -> List[str]:
-        """解析命令行，处理引号"""
+        """process command, deal with punctuation"""
         tokens = []
         current_token = ""
         in_quotes = False
@@ -76,15 +76,15 @@ class CommandProcessor:
             return "Usage: DELETE_LISTING <username> <listing_id>"
         return ListingService.delete_listing(*args)
     
-    def get_all_listings(self, args):
+    def get_listing(self, args):
         if len(args) != 2:
             return "Usage: GET_LISTINGS <username> <listing_id>"
-        return ListingService.get_all_listings(*args)
+        return ListingService.get_listing(*args)
     
-    def get_category(self, args):
+    def get_category_listings(self, args):
         if len(args) != 2:
             return "Usage: GET_CATEGORY <username> <category>"
-        return CategoryService.get_categories(*args)
+        return CategoryService.get_category_listings(*args)
 
     def get_top_category(self, args):
         if len(args) != 1:

@@ -1,6 +1,6 @@
 import sqlite3
 
-DB_NAME = "cloudshop.db"
+DB_NAME = "cloudNative_hw1.db"
 
 def get_connection():
     """建立並返回 SQLite 資料庫連線"""
